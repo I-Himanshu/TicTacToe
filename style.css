@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.gameGrid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3,1fr);
+    height: 50vmin;
+    width: 50vmin;
+    /* background-color: red; */
+    overflow: hidden;
+    display: none;
+}
+.gameGrid .box{
+    border: 5px solid black;
+    transform: scale(1.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 1s;
+
+}

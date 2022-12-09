@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicTacToe</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div class="container">
+        <h2 id="myInfo">
+
+        </h2>
+        <div id="infoPanel">
+
+        </div>
+        <div id="startPage">
+            <button onclick="createGame()">Create Game</button><br>
+            <input type="number" id="joinGameInput">
+            <button onclick="joinGame(joinGameInput.value)">Join Game</button>
+        </div>
+        <div class="gameGrid" id="gameBoard">
+            <div class="box t-0">X</div>
+            <div class="box">X</div>
+            <div class="box">X</div>
+            <div class="box">X</div>
+            <div class="box">X</div>
+            <div class="box">X</div>
+            <div class="box">X</div>
+            <div class="box">X</div>
+            <div class="box">X</div>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>

@@ -5,6 +5,7 @@
 }
 body{
     font-family: 'Poppins', sans-serif;
+    background: #ededed;
 }
 .container{
     width: 100vw;
@@ -13,19 +14,76 @@ body{
     justify-content: center;
     align-items: center;
 }
-.gameGrid{
+.page{
+    background: #fff;
+    border-radius: 20px;
+    width: 80vw;
+    min-width: 300px;
+    max-width: 500px;
+    min-height: 300px;
+    max-height: 500px;
+    height: 80vw;
+    text-align: center;
+    padding: 70px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#startPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    /* display: none; */
+}
+#startPage button{
+    padding: 10px 30px;
+    background: white;
+    border: none;
+    box-shadow: 0px 0px 20px -1px rgba(32, 33, 33, 0.17),
+    -0px -0px 10px -1px rgba(240, 239, 239, 0.767);
+    cursor: pointer;
+    color: #00a037;
+    border-radius: 50px;
+    font-weight: 900;
+    text-transform: uppercase;
+    transition: 0ms;
+}
+#startPage button:focus{
+    animation: scaleUpDown 300ms linear 1;
+}
+@keyframes scaleUpDown {
+    0%,100%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(0.7);
+    }
+}
+input.join{
+    padding: 10px 20px;
+    border: none;
+    box-shadow: 0 0 20px -10px rgb(48, 43, 43);
+    width: fit-content;
+    border-radius: 20px;
+    margin: 20px auto;
+}
+#gamePage{
+    padding: 10px 0px;
+    flex-direction: column;
+    display: none;
+}
+
+#gameBoard{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3,1fr);
-    height: 50vmin;
-    width: 50vmin;
-    /* background-color: red; */
-    overflow: hidden;
-    display: none;
+    width: 60%;
+    height: 80%;
 }
-.gameGrid .box{
-    border: 5px solid black;
-    transform: scale(1.2);
+#gameBoard .box{
+    border: 3px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,5 +91,62 @@ body{
     font-weight: 700;
     cursor: pointer;
     transition: 1s;
+    margin: 0;
+    padding: 5px;
+    transition: 300ms;
+}
+#gameBoard .box:active{
+    font-size: 1em;
+}
+.t{
+    border-top: none!important;
+}
+.l{
+    border-left: none!important;
+}
+.b{
+    border-bottom: none!important;
+}
+.r{
+    border-right: none!important;
+}
 
+#gamePage .players{
+    color: red;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-bottom: 3px solid black;
+    margin-bottom: 30px;
+    width: 80%;
+    padding-bottom: 10px;
+}
+.players span{
+    position: relative;
+    color: black;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 0.9em;
+}
+.players span.turn{
+    color: rgb(244, 245, 244);
+    background-color: #219a7c;
+    padding: 6px 15px;
+    border-radius: 30px;
+    z-index: 2;
+}
+.players span.turn::before{
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 100%;
+    transform: translate(-50%,50%);
+    background: #48259a;
+    border-radius: 20px;
+    padding: 4px 10px;
+    z-index: -1;
 }

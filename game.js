@@ -2,8 +2,13 @@ var mySymbol,myName;
 var activeGameInfo;
 var isMyTurn = false;
 var gameOver=false;
+var players = {
+    "you":document.querySelector(".players span.you"),
+    "opponent":document.querySelector(".players span.opponent")
+}
 function Request(path,data){
     var BASE_URL = "http://localhost:4000";
+    BASE_URL = "https://tiktac.paidserver.repl.co/"
     return fetch(BASE_URL+path,{
         method: "POST",
         headers:{
@@ -14,8 +19,8 @@ function Request(path,data){
 }
 function createGame(){
     // mySymbol = prompt("Choose From X and O");
-    // myName = prompt("Enter Your Name");
     myName = "PlayerX";
+    myName = prompt("Enter Your Name");
     mySymbol = "x";
     console.log("you are ", mySymbol);
     console.log("Waiting for player to join game");
@@ -47,6 +52,7 @@ function createGame(){
 function joinGame(gameId){
     isMyTurn = false;
     myName = "playerO";
+    myName = prompt("Enter Your Name");
     mySymbol = "o";
     if(!gameId){
         alert('Please Enter a value before start');
@@ -64,7 +70,7 @@ function joinGame(gameId){
 function startGame(gameId,mySymbol){
     myInfo.innerHTML = "You Are " + mySymbol;
     startPage.style.display = "none";
-    gameBoard.style.display = "grid";
+    gamePage.style.display = "flex";
     infoPanel.innerHTML = `Game Started between ${activeGameInfo.o} and ${activeGameInfo.x}<br />You Are ${mySymbol}`;
     Array.from(gameBoard.querySelectorAll(".box")).forEach((box,i)=>{
         box.innerHTML = activeGameInfo.activeGame[i];
@@ -84,9 +90,7 @@ function onBoxClick(box,i){
         Request("/playGame/"+activeGameInfo.id,{"turn":mySymbol,"pos":i}).then(res=>res.json()).then(res=>{
             console.log(res);
             if(res.id){
-                Array.from(gameBoard.querySelectorAll(".box")).forEach((box,i)=>{
-                    box.innerHTML = activeGameInfo.activeGame[i];
-                });
+                reFillBox();
                 console.log(`you typed ${mySymbol} at ${i}`)
                 waitForOtherOpponentChance()
             }
@@ -102,17 +106,27 @@ function waitForOtherOpponentChance(){
             console.log(res);
             if(res.id){
                 activeGameInfo = res;
-                Array.from(gameBoard.querySelectorAll(".box")).forEach((box,i)=>{
-                    box.innerHTML = activeGameInfo.activeGame[i];
-                });
+                reFillBox()
             }
             if(res.turn != mySymbol){
                 isMyTurn=true;
                 infoPanel.innerHTML = "Its Your Turn"
+                if(!players.you.classList.contains("turn")){
+                    document.querySelector(".players span.you").classList.add("turn");
+                }   
+                if(players.opponent.classList.contains("turn")){
+                    document.querySelector(".players span.opponent").classList.remove("turn")
+                }
                 clearInterval(waitingForOther);
             }else{
-                infoPanel.innerHTML = "Wait For Other Player To Start"
                 isMyTurn=false;
+                infoPanel.innerHTML = "Wait For Other Player To Start";
+                if(players.you.classList.contains("turn")){
+                    document.querySelector(".players span.you").classList.remove("turn");
+                }   
+                if(!players.opponent.classList.contains("turn")){
+                    document.querySelector(".players span.opponent").classList.add("turn")
+                }
             }
         })
     },2000)
@@ -152,4 +166,10 @@ function checkforWin() {
     gameOver=true
   }
   return win;
+}
+
+function reFillBox(){
+    Array.from(gameBoard.querySelectorAll(".box")).forEach((box,i)=>{
+        box.innerHTML = activeGameInfo.activeGame[i];
+    });
 }

@@ -10,27 +10,37 @@
 <body>
 
     <div class="container">
+        <div class="page" id="startPage">
+            <div class="join">
+                <input placeholder="Enter Game Code" class="join" type="tel" id="joinGameInput">
+                <button class="join" onclick="joinGame(joinGameInput.value)">Join Game</button>
+            </div>
+            OR
+             <button class="create" onclick="createGame()">Create Game</button><br>
+        </div>
         <h2 id="myInfo">
 
         </h2>
         <div id="infoPanel">
 
         </div>
-        <div id="startPage">
-            <button onclick="createGame()">Create Game</button><br>
-            <input type="number" id="joinGameInput">
-            <button onclick="joinGame(joinGameInput.value)">Join Game</button>
-        </div>
-        <div class="gameGrid" id="gameBoard">
-            <div class="box t-0">X</div>
-            <div class="box">X</div>
-            <div class="box">X</div>
-            <div class="box">X</div>
-            <div class="box">X</div>
-            <div class="box">X</div>
-            <div class="box">X</div>
-            <div class="box">X</div>
-            <div class="box">X</div>
+        <div class="page" id="gamePage">
+            <div class="players">
+                <span class="you turn">Himanshu</span> VS
+                <span class="opponent">Maskman</span>
+            </div>
+            <div id="gameBoard">
+                <div class="box t l">X</div>
+                <div class="box t">X</div>
+                <div class="box t r">X</div>
+                <div class="box l">X</div>
+                <div class="box"></div>
+                <div class="box r">X</div>
+                <div class="box l b">X</div>
+                <div class="box b"></div>
+                <div class="box b r">X</div>
+            </div>
+
         </div>
     </div>
     <script src="game.js"></script>

@@ -13,6 +13,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction:column-reverse;
 }
 .page{
     background: #fff;
@@ -35,7 +36,7 @@ body{
     justify-content: center;
     align-items: center;
     gap: 20px;
-    /* display: none; */
+    /*display: none; */
 }
 #startPage button{
     padding: 10px 30px;
@@ -73,8 +74,19 @@ input.join{
     padding: 10px 0px;
     flex-direction: column;
     display: none;
+    position:relative;
 }
-
+#gamePage::before{
+    content:attr(data-id);
+    position:absolute;
+    left:50%;
+    top:-10px;
+    transform:translate(-50%,-50%);
+    background:red;
+    color:white;
+    padding:4px 10px;
+    border-radius:20px;
+}
 #gameBoard{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -93,10 +105,18 @@ input.join{
     transition: 1s;
     margin: 0;
     padding: 5px;
-    transition: 300ms;
+    /* transition: 300ms; */
 }
-#gameBoard .box:active{
-    font-size: 1em;
+#gameBoard .box:active,#gameBoard .box.active{
+    animation: scaleUpDownFull 900ms linear 1;
+}
+@keyframes scaleUpDownFull {
+    0%,100%{
+        /* transform: scale(1); */
+    }
+    50%{
+        transform: scale(0);
+    }
 }
 .t{
     border-top: none!important;
@@ -131,12 +151,25 @@ input.join{
     border-radius: 30px;
     font-size: 0.9em;
 }
+
 .players span.turn{
     color: rgb(244, 245, 244);
     background-color: #219a7c;
     padding: 6px 15px;
     border-radius: 30px;
     z-index: 2;
+}
+.players span::after{
+    content:attr(data-score);
+    position:absolute;
+    left:50%;
+    top:-10px;
+    transform:translate(-50%,-50%);
+    background:red;
+    color:white;
+    padding:4px 15px;
+    font-size: 0.6em;
+    border-radius:20px;
 }
 .players span.turn::before{
     content: "";
@@ -150,3 +183,22 @@ input.join{
     padding: 4px 10px;
     z-index: -1;
 }
+#infoPanel{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: red;
+    text-align: center;
+    width: 100%;
+    color: white;
+    padding: 10px 0;
+}
+
+/* #startPage{
+    opacity: 1;
+    display: none;
+}
+#gamePage{
+    opacity: 1;
+    display: flex;
+} */

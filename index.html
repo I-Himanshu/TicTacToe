@@ -1,48 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TicTacToe</title>
     <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="container">
-        <div class="page" id="startPage">
-            <div class="join">
-                <input placeholder="Enter Game Code" class="join" type="tel" id="joinGameInput">
-                <button class="join" onclick="joinGame(joinGameInput.value)">Join Game</button>
-            </div>
-            OR
-             <button class="create" onclick="createGame()">Create Game</button><br>
+      <div id="infoPanel">
+        
+      </div>
+      <div class="page" id="startPage">
+        <div class="join">
+          <input
+            placeholder="Enter Game Code"
+            class="join"
+            type="tel"
+            id="joinGameInput"
+          />
+          <button class="join" onclick="joinGame(joinGameInput.value)">
+            Join Game
+          </button>
         </div>
-        <h2 id="myInfo">
-
-        </h2>
-        <div id="infoPanel">
-
+        OR
+        <button class="create" onclick="createGame()">Create Game</button><br />
+      </div>
+      <div class="page" id="gamePage">
+        <div class="players">
+          <span class="you turn" data-score="">Himanshu</span> VS
+          <span class="opponent" data-score="">Maskman</span>
         </div>
-        <div class="page" id="gamePage">
-            <div class="players">
-                <span class="you turn">Himanshu</span> VS
-                <span class="opponent">Maskman</span>
-            </div>
-            <div id="gameBoard">
-                <div class="box t l">X</div>
-                <div class="box t">X</div>
-                <div class="box t r">X</div>
-                <div class="box l">X</div>
-                <div class="box"></div>
-                <div class="box r">X</div>
-                <div class="box l b">X</div>
-                <div class="box b"></div>
-                <div class="box b r">X</div>
-            </div>
-
+        <div id="gameBoard">
+          <div class="box t l">X</div>
+          <div class="box t">X</div>
+          <div class="box t r">X</div>
+          <div class="box l">X</div>
+          <div class="box"></div>
+          <div class="box r">X</div>
+          <div class="box l b">X</div>
+          <div class="box b"></div>
+          <div class="box b r">X</div>
         </div>
+      </div>
     </div>
     <script src="game.js"></script>
-</body>
+  </body>
 </html>
